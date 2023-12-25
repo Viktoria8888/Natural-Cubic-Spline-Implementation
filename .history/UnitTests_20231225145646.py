@@ -20,6 +20,7 @@ class TestPoly(unittest.TestCase):
         expected_result2 = Polynomial(1,3,5,6)
         self.assertTrue(mult_poly == expected_result2)
 
+
         mult_constant = 2 * poly1
         expected_result1 = Polynomial(2,2,6)
         self.assertTrue(mult_constant == expected_result1)

@@ -14,8 +14,10 @@ class Polynomial:
     def __add__(self, other):
         max_degree = max(self.degree, other.degree)
         adj_coeffs1 = np.pad(self.coeffs, (max_degree - self.degree, 0), 'constant')
+        print(adj_coeffs1)
         adj_coeffs2 = np.pad(other.coeffs, (max_degree - other.degree, 0), 'constant')
-        return Polynomial(*(adj_coeffs1 + adj_coeffs2))
+        print(adj_coeffs2)
+        return adj_coeffs1 + adj_coeffs2
 
     def __call__(self, arg):
         res = 0
@@ -34,9 +36,7 @@ class Polynomial:
         res+= str(self.coeffs[-1])
         return res
     def __eq__(self, other):
-        if self.coeffs.shape != other.coeffs.shape:
-            return False
-        return np.allclose(self.coeffs, other.coeffs)
+        return np.array_equal(self.coeffs, other.coeffs)
     def __mul__(self, other):
         if isinstance(other, (int, float)):
             new_coeffs = self.coeffs * other
@@ -51,13 +51,9 @@ class Polynomial:
             raise TypeError("Unsupported type for multiplication")
     def __rmul__(self, other):
         return self * other
-    def __pow__(self, n):
-        if n == 0:
-            return Polynomial(1)
-        return (self ** (n-1)) * self
 
 
 
-poly1 = Polynomial(1,1,3)
+poly1 = Polynomial(1,2,3)
 poly2 = Polynomial(1,2)
-print(poly1*poly2)
+print(poly1+poly2)

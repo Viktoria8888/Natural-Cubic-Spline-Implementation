@@ -34,9 +34,7 @@ class Polynomial:
         res+= str(self.coeffs[-1])
         return res
     def __eq__(self, other):
-        if self.coeffs.shape != other.coeffs.shape:
-            return False
-        return np.allclose(self.coeffs, other.coeffs)
+        return np.array_equal(self.coeffs, other.coeffs)
     def __mul__(self, other):
         if isinstance(other, (int, float)):
             new_coeffs = self.coeffs * other
@@ -51,10 +49,6 @@ class Polynomial:
             raise TypeError("Unsupported type for multiplication")
     def __rmul__(self, other):
         return self * other
-    def __pow__(self, n):
-        if n == 0:
-            return Polynomial(1)
-        return (self ** (n-1)) * self
 
 
 

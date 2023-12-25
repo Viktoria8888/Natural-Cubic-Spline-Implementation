@@ -51,10 +51,6 @@ class Polynomial:
             raise TypeError("Unsupported type for multiplication")
     def __rmul__(self, other):
         return self * other
-    def __pow__(self, n):
-        if n == 0:
-            return Polynomial(1)
-        return (self ** (n-1)) * self
 
 
 

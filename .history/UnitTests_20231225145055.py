@@ -14,16 +14,14 @@ class TestPoly(unittest.TestCase):
         res = poly1(1)
         self.assertEqual(res,6)
     def test_mul(self):
-        poly1 = Polynomial(1, 1, 3)
-        poly2 = Polynomial(1,2)
+        poly1 = Polynomial(1, 2, 3)
+        mult_constant = 2 * poly1
+        expected_result1 = Polynomial(2,4,6)
+
         mult_poly = poly1 * poly2
         expected_result2 = Polynomial(1,3,5,6)
-        self.assertTrue(mult_poly == expected_result2)
-
-        mult_constant = 2 * poly1
-        expected_result1 = Polynomial(2,2,6)
         self.assertTrue(mult_constant == expected_result1)
-
+        self.assertTrue(mult_poly == expected_result2)
     def test_difference_quotient(self):
         res = difference_quotient([0,1,3,5],[0,1,27,125])
         self.assertEqual(res,1);
