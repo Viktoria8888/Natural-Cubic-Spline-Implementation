@@ -57,24 +57,12 @@ class Polynomial:
         return (self ** (n-1)) * self
 
 class PiecewisePoly(Polynomial):
-
     def __init__(self, poly_list, ranges):
-        """
-        Parameters
-        -----------
-        poly_list : list
-            List of objects of Polynomial type
-        ranges: list
-            List of x values
-
-        """
         self.poly_list = poly_list
         self.ranges = ranges
-        self.numberOfRanges = len(ranges) - 1
 
     def __call__(self, x):
-        # Looking for a cubic function that would correspond to the range
-        for i in range(self.numberOfRanges):
+        for i in range(len(self.ranges)-1):
             b = self.ranges[i]
             e = self.ranges[i+1]
             if b <= x and x <= e:
@@ -83,7 +71,7 @@ class PiecewisePoly(Polynomial):
 
     def __str__(self):
         res_str = ''
-        for i in range(self.numberOfRanges):
+        for i in range(len(self.ranges)-1):
             b = self.ranges[i]
             e = self.ranges[i+1]
             res_str += f"{b} <= x <= {e}  :  "
